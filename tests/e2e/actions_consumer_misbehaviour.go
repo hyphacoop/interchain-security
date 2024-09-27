@@ -17,12 +17,12 @@ type ForkConsumerChainAction struct {
 }
 
 func (tc Chain) forkConsumerChain(action ForkConsumerChainAction, verbose bool) {
-	valCfg := tc.testConfig.validatorConfigs[action.Validator]
+	valCfg := tc.testConfig.ValidatorConfigs[action.Validator]
 	configureNodeCmd := tc.target.ExecCommand("/bin/bash",
-		"/testnet-scripts/fork-consumer.sh", tc.testConfig.chainConfigs[action.ConsumerChain].BinaryName,
+		"/testnet-scripts/fork-consumer.sh", tc.testConfig.ChainConfigs[action.ConsumerChain].BinaryName,
 		string(action.Validator), string(action.ConsumerChain),
-		tc.testConfig.chainConfigs[action.ConsumerChain].IpPrefix,
-		tc.testConfig.chainConfigs[action.ProviderChain].IpPrefix,
+		tc.testConfig.ChainConfigs[action.ConsumerChain].IpPrefix,
+		tc.testConfig.ChainConfigs[action.ProviderChain].IpPrefix,
 		valCfg.Mnemonic,
 		action.RelayerConfig,
 	)
